@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:spring="http://www.springframework.org/tags">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/create_user}" th:object="${user}" >
+    <label for="name">Enter name: </label>
+    <input type="text" th:field="*{name}" id="name">
+    <br/>
+    <label for="email">Enter email: </label>
+    <input type="text" th:field="*{email}" id="email">
+    <br/>
+    <input type="submit" value="Create user">
+</form>
+<br>
+
+<form th:action="@{/}" th:method="GET" >
+    <button type="submit">All users</button>
+</form>
+
+</body>
+</html>
