@@ -25,8 +25,7 @@ public class UserController {
 
     @GetMapping
     public String getAllUsers(Model model) {
-        List<User> users = service.getAllUsers();
-        model.addAttribute("allUsers", users);
+        model.addAttribute("allUsers", service.getAllUsers());
         return "users";
     }
 
@@ -46,8 +45,7 @@ public class UserController {
     //upd
     @GetMapping("/update_user")
     public String getUpdateUserForm(@RequestParam("id") long userId, Model model) {
-        User user = service.getUser(userId);
-        model.addAttribute("userUpdate", user);
+        model.addAttribute("userUpdate", service.getUser(userId));
         return "update_user";
     }
 
