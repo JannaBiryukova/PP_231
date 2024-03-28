@@ -10,26 +10,24 @@
 <form th:action="@{/create_user}" th:method="GET">
   <button type="submit">Add user </button>
 </form>
-<form th:action="@{/update_user}" th:method="GET">
-  <button type="submit"> Update user </button>
-</form>
-<form th:action="@{/delete_user}" th:method="GET" >
-  <button type="submit">Delete user</button>
-</form>
 
 <br>
 
 <table border="2">All users
-  <br/>
   <tr>
     <th>ID</th>
     <th>Name</th>
     <th>Email</th>
+    <th>Delete</th>
+    <th>Update</th>
   </tr>
   <tr th:each="u : ${allUsers}">
     <td th:text="${u.getId()}"></td>
     <td th:text="${u.getName()}"></td>
     <td th:text="${u.getEmail()}"></td>
+    <td><a th:href="@{/delete(id=${u.id})}">delete</a>
+    <td><a th:href="@{/update_user(id=${u.id})}">update</a>
+
   </tr>
 
 </table>

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import web.dao.UserDao;
 import web.service.UserService;
 import web.model.User;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,39 +45,25 @@ public class UserController {
 
     //upd
     @GetMapping("/update_user")
-    public String getUpdateUserForm(Model model) {
-        model.addAttribute("userUpdate", new User());
+    public String getUpdateUserForm(@RequestParam("id") long userId, Model model) {
+        User user = service.getUser(userId);
+        model.addAttribute("userUpdate", user);
         return "update_user";
     }
 
     @PostMapping("/update_user")
-    public String getUpdateUser(@ModelAttribute("userUpdate") User user) {
-        try {
-            service.updateUser(user.getId(), user);
-        } catch (Exception e) {
-            System.out.println("No this user!");
-        }
+    public String updateUserData(@ModelAttribute("userUpdate") User user) {
+        service.updateUser(user.getId(), user);
         return "redirect:/";
     }
+
 
     //delete
-
-    //
-    @GetMapping("/delete_user")
-    public String getDeleteUserForm(Model model) {
-        model.addAttribute("userDelete", new User());
-        return "delete_user";
-    }
-
-    @PostMapping("/delete_user")
-    public String getDeleteUser(@ModelAttribute("userDelete") User user) {
-        try {
-            service.deleteUser(user.getId());
-        } catch (Exception e) {
-            System.out.println("Error");
-        }
-
+    @GetMapping("/delete")
+    public String deleteUser(@RequestParam("id") long id) {
+        service.deleteUser(id);
         return "redirect:/";
     }
+
 
 }

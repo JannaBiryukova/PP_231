@@ -8,18 +8,18 @@
 
 <form th:method="POST" th:action="@{/update_user}" th:object="${userUpdate}" >
     <label for="id">Enter id who you want update: </label>
-    <input type="number" th:field="*{id}" id="id">
+    <input type="hidden" th:field="*{id}" id="id">
     <br/>
 
-    <label for="name">Enter new name: </label>
-    <input type="text" th:field="*{name}" id="name">
-    <br/>
 
-    <label for="email">Enter new email: </label>
-    <input type="text" th:field="*{email}" id="email">
-    <br/>
+    <label for="name">Name:</label>
+    <input type="text" th:field="*{name}" id="name" required />
 
-    <input type="submit" value="Update user!">
+
+    <label for="email">Email:</label>
+    <input type="email" th:field="*{email}" id="email" required />
+
+    <button type="submit">Update User</button>
 </form>
 <br>
 
